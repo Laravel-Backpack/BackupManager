@@ -54,7 +54,9 @@ class BackupController extends Controller
         $message = 'success';
 
         try {
-            ini_set('max_execution_time', 600);
+            foreach (config('backup.backup.ini_settings') as $setting => $value) {
+                ini_set($setting, $value);
+            }
 
             Log::info('Backpack\BackupManager -- Called backup:run from admin interface');
 

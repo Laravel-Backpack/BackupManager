@@ -26,6 +26,14 @@ return [
          */
         'name' => env('APP_NAME', 'laravel-backup'),
 
+        /*
+         * Overwrite PHP ini settings when creating the backup
+         */
+
+        'ini_settings' => [
+            'max_execution_time' => 600,
+        ],
+
         'source' => [
 
             'files' => [
