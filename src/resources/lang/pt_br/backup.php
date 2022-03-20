@@ -28,7 +28,6 @@ return [
     'delete_cancel_title'            => 'Sem problema',
     'delete_cancel_message'          => 'O backup não foi excluído.',
     'create_confirmation_title'      => 'Backup completo',
-    'create_confirmation_message'    => 'A página será recarregada em 3 segundos.',
     'create_error_title'             => 'Erro de backup',
     'create_error_message'           => 'Não foi possível criar o Backup.',
     'create_warning_title'           => 'Erro desconhecido',
@@ -37,4 +36,9 @@ return [
     'no_disks_configured'            => 'Não existe configuração de local de backup no arquivo config/backup.php',
     'backup_doesnt_exist'            => 'O arquivo de backup não existe.',
     'only_local_downloads_supported' => 'Somente são suportados downloads do sistema de arquivos local.',
+    'unknown_disk'                   => 'Disco de backup desconhecido.',
+    'create_started_message'         => 'Por favor aguarde alguns minutos pela conclusão do backup.',
+    'create_completed_title'         => 'O backup está concluído.',
+    'download_confirmation_title'    => 'Download iniciado.',
+    'download_error_title'           => 'Erro ao fazer o download',
 ];

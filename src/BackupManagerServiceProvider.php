@@ -52,6 +52,9 @@ class BackupManagerServiceProvider extends ServiceProvider
         $this->publishes([__DIR__.'/resources/lang' => resource_path('lang/vendor/backpack')], 'lang');
         // publish the views
         $this->publishes([__DIR__.'/resources/views' => resource_path('views/vendor/backpack/backupmanager')], 'views');
+
+        // Livewire components
+        app('livewire')->component('backpack.backupmanager::backup', \Backpack\BackupManager\app\Http\Livewire\Backup::class);
     }
 
     /**

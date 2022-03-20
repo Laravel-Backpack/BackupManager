@@ -24,7 +24,8 @@
     "prefer-stable": true,
     "require": {
         "backpack/crud": "^5.0",
-        "spatie/laravel-backup": "^8.0"
+        "spatie/laravel-backup": "^8.0",
+        "livewire/livewire": "^2.10"
     },
     "require-dev": {
         "phpunit/phpunit" : "^9.0||^7.0",
@@ -51,6 +52,11 @@
             "providers": [
                 "Backpack\\BackupManager\\BackupManagerServiceProvider"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
         }
     }
 }
