@@ -2,8 +2,8 @@
 
 @php
 $breadcrumbs = [
-    trans('backpack::crud.admin') => backpack_url('dashboard'),
-    trans('backpack::backup.backup') => false,
+trans('backpack::crud.admin') => backpack_url('dashboard'),
+trans('backpack::backup.backup') => false,
 ];
 @endphp
 
@@ -16,5 +16,5 @@ $breadcrumbs = [
 @endsection
 
 @section('content')
-<livewire:backpack.backupmanager::backup />
+<livewire:backpack.backupmanager::backuptable />
 @endsection

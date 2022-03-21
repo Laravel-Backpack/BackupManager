@@ -53,10 +53,5 @@
                 "Backpack\\BackupManager\\BackupManagerServiceProvider"
             ]
         }
-    },
-    "config": {
-        "allow-plugins": {
-            "composer/package-versions-deprecated": true
-        }
     }
 }

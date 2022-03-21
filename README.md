@@ -58,27 +58,40 @@ You can do that in your `config/database.php` file, where you define your databa
 
 ```php
 'mysql' => [
-            'driver'            => 'mysql',
-            'host'              => env('DB_HOST', 'localhost'),
-            'database'          => env('DB_DATABASE', 'forge'),
-            'username'          => env('DB_USERNAME', 'forge'),
-            'password'          => env('DB_PASSWORD', ''),
-            'charset'           => 'utf8',
-            'collation'         => 'utf8_unicode_ci',
-            'prefix'            => '',
-            'strict'            => false,
-            'engine'            => null,
-            'dump' => [
- 
-               'dump_binary_path' => '/path/to/directory/', // only the path, without `mysqldump` or `pg_dump`
-               // 'dump_binary_path' => '/Applications/MAMP/Library/bin/', // works for MAMP on Mac OS
-               // 'dump_binary_path' => '/opt/homebrew/bin/', // works for Laravel Valet on Mac OS
-               'use_single_transaction',
-               'timeout' => 60 * 5, // 5 minute timeout
-               // 'exclude_tables' => ['table1', 'table2'],
-               // 'add_extra_option' => '--optionname=optionvalue',
-            ]
-        ],
+    'driver'    => 'mysql',
+    'host'      => env('DB_HOST', 'localhost'),
+    'database'  => env('DB_DATABASE', 'forge'),
+    'username'  => env('DB_USERNAME', 'forge'),
+    'password'  => env('DB_PASSWORD', ''),
+    'charset'   => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix'    => '',
+    'strict'    => false,
+    'engine'    => null,
+    'dump' => [
+        'dump_binary_path' => '/path/to/directory/', // only the path, without `mysqldump` or `pg_dump`
+        // 'dump_binary_path' => '/Applications/MAMP/Library/bin/', // works for MAMP on Mac OS
+        // 'dump_binary_path' => '/opt/homebrew/bin/', // works for Laravel Valet on Mac OS
+        'use_single_transaction',
+        'timeout' => 60 * 5, // 5 minute timeout
+        // 'exclude_tables' => ['table1', 'table2'],
+        // 'add_extra_option' => '--optionname=optionvalue',
+    ]
+],
+```
+
+BackupManager uses Livewire, if you use it too in any costumization to your admin panel you may face some Javascript issues, please use the below code snipped to avoid importing livewire multiple times:
+
+```php
+@loadOnce('livewire')
+    @section('after_styles')
+        @livewireStyles
+    @endsection
+
+    @section('after_scripts')
+        @livewireScripts
+    @endsection
+@endLoadOnce
 ```
 
 ## Usage
@@ -100,14 +113,14 @@ Change your required version to ```"backpack/backupmanager": "^3.0",``` and run 
 3) republish the config files: ```php artisan vendor:publish --provider="Backpack\BackupManager\BackupManagerServiceProvider"```
 4) change your db configuration in ```config/database.php``` to use the new dump configuration (all options in one array; the example below is for MAMP on MacOS):
 
-```
-            'dump' => [
-               'dump_binary_path' => '/Applications/MAMP/Library/bin/', // only the path, so without `mysqldump` or `pg_dump`
-               'use_single_transaction',
-               'timeout' => 60 * 5, // 5 minute timeout
-               // 'exclude_tables' => ['table1', 'table2'],
-               // 'add_extra_option' => '--optionname=optionvalue',
-            ]
+```php
+'dump' => [
+    'dump_binary_path' => '/Applications/MAMP/Library/bin/', // only the path, so without `mysqldump` or `pg_dump`
+    'use_single_transaction',
+    'timeout' => 60 * 5, // 5 minute timeout
+    // 'exclude_tables' => ['table1', 'table2'],
+    // 'add_extra_option' => '--optionname=optionvalue',
+]
 ```
 5) Create a backup in the interface to test it works. If it doesn't try ```php artisan backup:run``` to see what the problem is.
 
