@@ -29,12 +29,12 @@ class BackupTable extends Component
                 // only take the zip files into account
                 if (substr($file, -4) === '.zip' && $disk->exists($file)) {
                     $this->backups[] = (object) [
-                        'filePath' => $file,
-                        'fileName' => str_replace('backups/', '', $file),
-                        'fileSize' => round((int) $disk->size($file) / 1048576, 2),
+                        'filePath'     => $file,
+                        'fileName'     => str_replace('backups/', '', $file),
+                        'fileSize'     => round((int) $disk->size($file) / 1048576, 2),
                         'lastModified' => Carbon::createFromTimeStamp($disk->lastModified($file))->formatLocalized('%d %B %Y, %H:%M'),
-                        'diskName' => $diskName,
-                        'download' => is_a($disk->getAdapter(), LocalFilesystemAdapter::class, true),
+                        'diskName'     => $diskName,
+                        'download'     => is_a($disk->getAdapter(), LocalFilesystemAdapter::class, true),
                     ];
                 }
             }
@@ -46,7 +46,7 @@ class BackupTable extends Component
         return view('backupmanager::livewire.backuptable');
     }
 
-    public function create(): bool | string
+    public function create(): bool|string
     {
         $command = config('backpack.backupmanager.artisan_command_on_button_click') ?? 'backup:run';
 
@@ -79,32 +79,32 @@ class BackupTable extends Component
         return true;
     }
 
-    public function download(int $index): StreamedResponse | string
+    public function download(int $index): StreamedResponse|string
     {
         $backup = (object) $this->backups[$index];
         $disk = Storage::disk($backup->diskName);
 
-        if (! in_array($backup->diskName, config('backup.backup.destination.disks'))) {
+        if (!in_array($backup->diskName, config('backup.backup.destination.disks'))) {
             return trans('backpack::backup.unknown_disk');
         }
 
-        if (! $backup->download) {
+        if (!$backup->download) {
             return trans('backpack::backup.only_local_downloads_supported');
         }
 
-        if (! $disk->exists($backup->fileName)) {
+        if (!$disk->exists($backup->fileName)) {
             return trans('backpack::backup.backup_doesnt_exist');
         }
 
         return $disk->download($backup->fileName);
     }
 
-    public function delete(int $index): bool | string
+    public function delete(int $index): bool|string
     {
         $backup = (object) $this->backups[$index];
         $disk = Storage::disk($backup->diskName);
 
-        if (! $disk->exists($backup->fileName)) {
+        if (!$disk->exists($backup->fileName)) {
             return trans('backpack::backup.backup_doesnt_exist');
         }
 
