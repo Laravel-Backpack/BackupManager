@@ -13,6 +13,7 @@ return [
     */
 
     'backup'                         => 'Backup',
+    'backups'                        => 'Backups',
     'create_a_new_backup'            => 'Criar um novo backup',
     'existing_backups'               => 'Backups existentes',
     'date'                           => 'Data',

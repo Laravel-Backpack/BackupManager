@@ -13,6 +13,7 @@ return [
     */
 
     'backup'                         => 'Copia de seguridad',
+    'backups'                        => 'Copias de seguridad',
     'create_a_new_backup'            => 'Crear una copia de seguridad',
     'existing_backups'               => 'Copias de seguridad existentes',
     'date'                           => 'Fecha',
