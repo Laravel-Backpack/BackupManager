@@ -8,7 +8,7 @@ class BackupController extends Controller
 {
     public function index()
     {
-        if (! count(config('backup.backup.destination.disks'))) {
+        if (!count(config('backup.backup.destination.disks'))) {
             abort(500, trans('backpack::backup.no_disks_configured'));
         }
 
