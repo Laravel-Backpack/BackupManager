@@ -80,7 +80,7 @@ You can do that in your `config/database.php` file, where you define your databa
 ],
 ```
 
-BackupManager uses Livewire, if you use it too in any costumization to your admin panel you may face some Javascript issues, please use the below code snipped to avoid importing livewire multiple times:
+BackupManager uses [Livewire](https://laravel-livewire.com/). If you use it in your admin panel too, and its Javascript & CSS is already onpage, you may face some Javascript issues. If you're using a custom layouts that already loads Livewire, please use the code below. This will avoid loading Livewire assets multiple times in one page:
 
 ```php
 @loadOnce('livewire')
