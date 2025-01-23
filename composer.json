@@ -2,7 +2,6 @@
     "name": "backpack/backupmanager",
     "description": "Admin interface for managing backups in Backpack, on Laravel 5.2+",
     "keywords": [
-        "dick",
         "backpack",
         "updivision",
         "backup",
