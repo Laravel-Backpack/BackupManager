@@ -23,8 +23,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "backpack/crud": "^6.0",
-        "spatie/laravel-backup": "^8.0"
+        "backpack/crud": "dev-next as 6.99.9",
+        "spatie/laravel-backup": "^9.0"
     },
     "require-dev": {
         "scrutinizer/ocular": "~1.7|~1.1"
