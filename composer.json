@@ -23,7 +23,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "backpack/crud": "^6.0",
+        "backpack/crud": "^7.0.0-alpha",
         "spatie/laravel-backup": "^8.0|^9.0"
     },
     "require-dev": {
