@@ -2,7 +2,6 @@
     "name": "backpack/backupmanager",
     "description": "Admin interface for managing backups in Backpack, on Laravel 5.2+",
     "keywords": [
-        "dick",
         "backpack",
         "updivision",
         "backup",
@@ -23,7 +22,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "backpack/crud": "^6.0",
+        "backpack/crud": "^6.0|^7.0",
         "spatie/laravel-backup": "^8.0|^9.0"
     },
     "require-dev": {
