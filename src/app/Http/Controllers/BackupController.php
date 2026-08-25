@@ -93,11 +93,16 @@ class BackupController extends Controller
     {
         $diskName = Request::input('disk');
         $fileName = Request::input('file_name');
-        $disk = Storage::disk($diskName);
 
         if (!$this->isBackupDisk($diskName)) {
             abort(500, trans('backpack::backup.unknown_disk'));
         }
+
+        if (!$this->isValidBackupFileName($fileName)) {
+            abort(404, trans('backpack::backup.backup_doesnt_exist'));
+        }
+
+        $disk = Storage::disk($diskName);
 
         if (!is_a($disk->getAdapter(), LocalFilesystemAdapter::class, true)) {
             abort(404, trans('backpack::backup.only_local_downloads_supported'));
@@ -122,6 +127,10 @@ class BackupController extends Controller
             return response(trans('backpack::backup.unknown_disk'), 500);
         }
 
+        if (!$this->isValidBackupFileName($fileName)) {
+            return response(trans('backpack::backup.backup_doesnt_exist'), 404);
+        }
+
         $disk = Storage::disk($diskName);
 
         if (!$disk->exists($fileName)) {
@@ -141,5 +150,21 @@ class BackupController extends Controller
     private function isBackupDisk(string $diskName)
     {
         return in_array($diskName, config('backup.backup.destination.disks'));
+    }
+
+    /**
+     * Only allow plain .zip filenames, to prevent path traversal.
+     */
+    private function isValidBackupFileName($fileName)
+    {
+        if (!is_string($fileName) || $fileName === '' || $fileName !== basename($fileName)) {
+            return false;
+        }
+
+        if (str_contains($fileName, '\\') || str_starts_with($fileName, '.')) {
+            return false;
+        }
+
+        return str_ends_with(strtolower($fileName), '.zip');
     }
 }
